@@ -167,3 +167,63 @@ class ConsoleTable {
 $inputNumber = rand(1, 9);
 $Worker = New ConsoleTable;
 //$Worker->createTable($inputNumber);
+
+/*Написать функцию, возвращющую строку со словом "студент", склоняемым по случайному числу студентов.*/
+
+function wordDeclensionForString() {
+    
+    $studentsCount = mt_rand(1, 1000000);
+    
+    if (preg_match("/([05-9]|1\d)$/", $studentsCount)) {
+        
+        $ending = 'ов';
+    
+    } elseif (preg_match("/([234])$/", $studentsCount)) {
+        
+        $ending = 'а';
+    
+    } else {
+        
+        $ending = '';
+    
+    }
+    
+    return 'На учебе ' . $studentsCount . ' студент' . $ending;
+}
+
+//print wordDeclensionForString();
+
+//Task 8
+
+function detectedCar() {
+
+    $city1 = mt_rand(0, 1000);
+    $city1Radius = 100;
+    $city2 = mt_rand(0, 1000);
+    $city2Radius = 100;
+    
+    $cars = [];
+    
+    for ($i = 0; $i < 10; $i++) {
+        $cars[] = [
+            'name' => $i + 1,
+            'position' => mt_rand(0, 1000)
+        ];
+    }
+    
+    foreach ($cars as $car ) {
+        
+        if ($car['position'] > $city1 - $city1Radius && $car['position'] < $city1 + $city1Radius ||
+        $car['position'] > $city2 - $city2Radius && $car['position'] < $city2 + $city2Radius) {
+            
+            print 'Машина ' . $car['name'] . ' едет по городу на ' . $car['position'] . ' км со скоростью не более 70км' . "\n" ;
+        
+        } else {
+            
+            print 'Машина ' . $car['name'] . ' едет за городом на ' . $car['position'] . ' км со скоростью не более 90км' . "\n";
+        
+        }
+    }
+}
+
+//detectedCar();
